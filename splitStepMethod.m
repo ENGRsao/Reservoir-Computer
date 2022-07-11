@@ -15,5 +15,5 @@ function [temp,temp_f] = splitStepMethod(signal, soliton_order, fiber_length, di
         [temp,~] = NonLinearEffect(uu,soliton_order,deltaZ);
     end
     [temp,~] = NonLinearEffect(temp,soliton_order,deltaZ/2);%Final Field
-    temp_f = fftshift(ifft(uu)); %.*(fft_point*delta_tau)/sqrt(2*pi);  
+    temp_f = (ifft(uu)); %.*(fft_point*delta_tau)/sqrt(2*pi);  
 end
