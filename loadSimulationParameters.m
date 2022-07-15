@@ -16,7 +16,7 @@ function [Pulse,Fiber] = loadSimulationParameters()
     Pulse.chirp = 0;
     Pulse.speed_of_light = 3 * 10^5; %in nm/ps
     Pulse.wavelength = 1550; % in nm
-    Pulse.Peak_power = 0.50; %in Watt
+    Pulse.Peak_power = 1.0; %in Watt
     
     %% Fiber Parameters
         %Dispersion parameters
@@ -26,7 +26,7 @@ function [Pulse,Fiber] = loadSimulationParameters()
     Fiber.length = 1.5 * Fiber.dispersion_length;  %Km
     
         %NonLinear Parameters 
-    Fiber.gamma = 1.76; %W^-1.km^-1 for standard single mode fiber; Nolinear Coefficeint, 1.76
+    Fiber.gamma = 1.1; %W^-1.km^-1 for standard single mode fiber; Nolinear Coefficeint, 1.76
     Fiber.alpha = 0.2;  % fiber loss db/km
     Fiber.L_effective = (1 - exp(-1 * Fiber.alpha * Fiber.length))/Fiber.alpha; %Km effective length
     Fiber.NonLinear_length = 1 / (Fiber.gamma * Pulse.Peak_power);   %Km
@@ -34,6 +34,9 @@ function [Pulse,Fiber] = loadSimulationParameters()
         %Numerical Simulation parameter
     Pulse.soliton_order  = round(sqrt(Fiber.dispersion_length/Fiber.NonLinear_length));  %constant
     Fiber.Division_factor = 200;
+    Fiber.Inputcoupling = 0.9;
+    Fiber.Outputcoupling = 0.9;
+    Fiber.MZM_Vpi = 3.54;
         
         %Input signal type
     Pulse.sech = sech(Pulse.Normalize_tau) .* exp(-1i*0.5*Pulse.chirp.*Pulse.Normalize_tau.^2); %sech signal
