@@ -13,8 +13,8 @@ plot(Pulse.Normalize_tau,abs(SSFM_t).^2);
 %% Reservoir Network application to NARMA10 task 
 %input_mask = [0.7 0.2 0.4 0.5 0.9 0.8 0.1 0.4 0.3 0.6 0.95 0.3 0.99	0.35 0.2 0.7 0.8 0.6 0.1 0.4 0.2 0.2 0.1 0.9 0.8 0.4 0.8 0.75 0.6	0.4	0.35 0.15 0.3 0.55 0.45	0.65 0.5	0.8	0.1	0.4	0.6	0.2	0.6	0.1	0.8	0.7	0.3	0.4	1.0	0.3];
 input_mask = [0.2 0.5 0.9 0.4 0.8 0.4 0.0 0.2 0.9 0.7 0.5 0.2 0.6 1.0 0.7 0.4 0.4 0.8 0.5 0.2 0.8 0.5 0.3 0.6 0.0 0.7 0.0 0.5 0.3 0.4 0.7 0.8 0.2 0.7 0.4 0.3 0.2 0.6 0.7 0.1 0.4 0.6 0.9 0.8 0.7 0.3 0.9 0.1 0.2 0.4];
-u_n = Input(1:5000);
-Y_n = Output(1:5000);
+u_n = rescale(Input(1:10000)); %Normalize input between 0 and 1
+Y_n = normalize(Output(1:10000), 'range' , [-1 1]); %Normalize between -1 and 1
 
 mask_len = length(input_mask);
 signal_len = length(u_n);
