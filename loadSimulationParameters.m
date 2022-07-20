@@ -21,7 +21,7 @@ function [Pulse,Fiber] = loadSimulationParameters()
     %% Fiber Parameters
         %Dispersion parameters
     Fiber.D = 17; %GVD parameter in ps/nm km
-    Fiber.Beta2 = 1 * (Pulse.wavelength^2 * Fiber.D)/(2*pi*Pulse.speed_of_light); % ps^2/Km ; Dispersion Constant
+    Fiber.Beta2 = -1 * (Pulse.wavelength^2 * Fiber.D)/(2*pi*Pulse.speed_of_light); % ps^2/Km ; Dispersion Constant
     Fiber.dispersion_length = Pulse.T_nat^2 / abs(Fiber.Beta2); %Km
     Fiber.length = 1.5 * Fiber.dispersion_length;  %Km
     
@@ -34,8 +34,8 @@ function [Pulse,Fiber] = loadSimulationParameters()
         %Numerical Simulation parameter
     Pulse.soliton_order  = round(sqrt(Fiber.dispersion_length/Fiber.NonLinear_length));  %constant
     Fiber.Division_factor = 200;
-    Fiber.Inputcoupling = 0.9;
-    Fiber.Outputcoupling = 0.9;
+    Fiber.Inputcoupling = 0.95;
+    Fiber.Outputcoupling = 0.95;
     Fiber.MZM_Vpi = 3.54;
         
         %Input signal type
